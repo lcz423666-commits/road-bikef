@@ -391,7 +391,7 @@ export default function Index() {
                 <h3 className="text-base font-bold text-foreground">
                   Q1：你更在意湿地防滑性吗？
                 </h3>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {wetOptions.map((option) => (
                     <button
                       key={option.value}
@@ -413,7 +413,7 @@ export default function Index() {
                 <h3 className="text-base font-bold text-foreground">
                   Q2：你希望胎宽偏好？
                 </h3>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {widthOptions.map((option) => (
                     <button
                       key={option.value}
@@ -607,7 +607,7 @@ export default function Index() {
                 <h3 className="text-base font-bold text-foreground mb-4">
                   这次推荐对你有帮助吗？
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3">
                   {[
                     { value: "helpful", label: "有帮助" },
                     { value: "neutral", label: "一般" },
