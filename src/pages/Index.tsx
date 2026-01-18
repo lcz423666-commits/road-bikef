@@ -479,7 +479,7 @@ export default function Index() {
                         </span>
                       </div>
 
-                      <div className="flex-1 space-y-5">
+                      <div className="flex-1 space-y-5 min-w-0">
                         {/* 标题行 */}
                         <div className="flex items-start justify-between gap-4">
                           <div>
