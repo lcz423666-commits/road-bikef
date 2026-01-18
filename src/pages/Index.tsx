@@ -483,7 +483,7 @@ export default function Index() {
                         {/* 标题行 */}
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <h3 className="text-xl font-bold text-foreground leading-tight mb-2">
+                            <h3 className="text-xl font-bold text-foreground leading-tight mb-2 break-words">
                               {tire.brand} {tire.model}
                             </h3>
                             <span className="inline-block px-3 py-1 bg-[#dcfce7] text-[#166534] text-xs font-bold rounded-full">
