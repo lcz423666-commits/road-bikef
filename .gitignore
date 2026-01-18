@@ -1,0 +1,10 @@
+# mac
+.DS_Store
+
+# dependencies
+node_modules/
+
+# build cache
+.vite/
+dist/
+node_modules
