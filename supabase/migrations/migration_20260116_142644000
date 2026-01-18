@@ -1,0 +1,19 @@
+-- Create feedback table
+CREATE TABLE IF NOT EXISTS public.feedback (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  helpfulness TEXT NOT NULL CHECK (helpfulness IN ('helpful', 'ok', 'not_helpful')),
+  q1_importance TEXT,
+  q2_width_pref TEXT,
+  top1 TEXT,
+  top2 TEXT,
+  top3 TEXT
+);
+
+-- Enable RLS
+ALTER TABLE public.feedback ENABLE ROW LEVEL SECURITY;
+
+-- Allow anonymous inserts (anyone can submit feedback)
+CREATE POLICY "Allow anonymous feedback insert" ON public.feedback
+  FOR INSERT
+  WITH CHECK (true);

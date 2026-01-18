@@ -1,0 +1,19 @@
+{
+  "name": "公路车轮胎购买指南",
+  "short_name": "轮胎指南",
+  "description": "专业的公路车轮胎选购工具，基于真实测试数据智能推荐",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["utilities", "sports"],
+  "lang": "zh-CN"
+}
