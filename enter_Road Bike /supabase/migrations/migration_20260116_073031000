@@ -1,0 +1,8 @@
+-- Enable RLS on tires table (if not already enabled)
+ALTER TABLE public.tires ENABLE ROW LEVEL SECURITY;
+
+-- Create policy to allow public read access
+DROP POLICY IF EXISTS "Allow public read access" ON public.tires;
+CREATE POLICY "Allow public read access" ON public.tires
+  FOR SELECT
+  USING (true);
