@@ -483,7 +483,7 @@ export default function Index() {
                         {/* 标题行 */}
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div className="min-w-0">
-                            <h3 className="w-full text-xl font-bold text-foreground leading-tight mb-2 break-words whitespace-normal">
+                            <h3 className="w-full text-xl font-bold text-foreground leading-tight mb-2 break-words whitespace-normal [overflow-wrap:anywhere]">
                               {tire.brand} {tire.model}
                             </h3>
                             <span className="inline-block px-3 py-1 bg-[#dcfce7] text-[#166534] text-xs font-bold rounded-full">
@@ -540,7 +540,7 @@ export default function Index() {
 
                         {/* 适合原因 - AI生成 */}
                         <div className="bg-[#f9fafb] px-4 py-3 rounded-lg border border-[#e5e7eb] min-w-0">
-                          <p className="text-xs text-muted-foreground leading-relaxed break-words whitespace-normal">
+                          <p className="text-xs text-muted-foreground leading-relaxed break-words whitespace-normal [overflow-wrap:anywhere]">
                             {tire.explanation}
                           </p>
                         </div>
