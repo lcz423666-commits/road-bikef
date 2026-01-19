@@ -44,6 +44,7 @@ function generateReason(tire: TireWithScore, wetPref: WetPreference): string {
 }
 
 export default function Index() {
+  const BUILD_TAG = "2025-02-15-1";
   const [wetPref, setWetPref] = useState<WetPreference>("normal");
   const [widthPref, setWidthPref] = useState<WidthPreference>("28");
   const [results, setResults] = useState<TireWithScore[]>([]);
@@ -599,6 +600,11 @@ export default function Index() {
                 <strong className="font-bold">免责声明：</strong>
                 推荐基于公开测试数据与权重计算，仅供决策参考，实际体验受路况、胎压、轮圈内宽等影响。
               </p>
+            </div>
+
+            {/* Build marker */}
+            <div className="mt-3 text-[11px] text-muted-foreground">
+              build: {BUILD_TAG}
             </div>
 
             {/* 反馈模块 */}
