@@ -100,9 +100,11 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
+body {
+  @apply bg-background text-foreground;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 }
 
 html,
