@@ -471,7 +471,7 @@ export default function Index() {
                   className="shadow-sm border border-[#e5e7eb] rounded-2xl overflow-hidden bg-white hover:shadow-md transition-all duration-300"
                 >
                   <div className="p-6 md:p-7">
-                    <div className="flex items-start gap-5">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
                       {/* 排名徽章 - 绿色实心 */}
                       <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-primary flex items-center justify-center shadow-sm">
                         <span className="text-white font-extrabold text-lg">
@@ -481,7 +481,7 @@ export default function Index() {
 
                       <div className="flex-1 space-y-5 min-w-0">
                         {/* 标题行 */}
-                        <div className="flex items-start justify-between gap-4">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div>
                             <h3 className="text-xl font-bold text-foreground leading-tight mb-2 break-all">
                               {tire.brand} {tire.model}
@@ -504,7 +504,7 @@ export default function Index() {
                                 {tire.wg.toFixed(1)}
                               </span>
                             </div>
-                            <div className="w-[60%]">
+                            <div className="w-full sm:w-[60%]">
                               <div className="h-1.5 bg-[#e5e7eb] rounded-full overflow-hidden">
                                 <div 
                                   className="h-full bg-primary rounded-full transition-all"
@@ -524,7 +524,7 @@ export default function Index() {
                                 {tire.rr.toFixed(1)}W
                               </span>
                             </div>
-                            <div className="w-[60%]">
+                            <div className="w-full sm:w-[60%]">
                               <div className="h-1.5 bg-[#e5e7eb] rounded-full overflow-hidden">
                                 <div 
                                   className="h-full bg-primary rounded-full transition-all"
@@ -546,15 +546,15 @@ export default function Index() {
                         </div>
 
                         {/* 底部信息条 - 电商风格 */}
-                        <div className="flex items-center justify-between pt-3 border-t border-[#e5e7eb]">
-                          <div className="flex items-baseline gap-2">
+                        <div className="flex flex-col gap-2 pt-3 border-t border-[#e5e7eb] sm:flex-row sm:items-center sm:justify-between">
+                          <div className="flex flex-wrap items-baseline gap-2 min-w-0">
                             {tire.price && (
                               <span className="text-2xl font-extrabold text-primary">
                                 ¥{tire.price}
                               </span>
                             )}
                             {tire.source_site && (
-                              <span className="text-xs text-muted-foreground">
+                              <span className="text-xs text-muted-foreground break-all">
                                 来源：{tire.source_site}
                               </span>
                             )}
