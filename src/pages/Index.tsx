@@ -378,6 +378,9 @@ export default function Index() {
             <p className="text-base text-muted-foreground font-normal">
               用公开测试数据，快速选出更适合你的轮胎
             </p>
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              build: {BUILD_TAG}
+            </p>
           </div>
         </div>
       </section>
@@ -602,10 +605,6 @@ export default function Index() {
               </p>
             </div>
 
-            {/* Build marker */}
-            <div className="mt-3 text-[11px] text-muted-foreground">
-              build: {BUILD_TAG}
-            </div>
 
             {/* 反馈模块 */}
             <Card className="shadow-sm border border-[#e5e7eb] rounded-2xl overflow-hidden bg-white mt-6">
