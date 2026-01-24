@@ -18,6 +18,8 @@ interface TireWithScore extends Tire {
   explanation: string; // 用于存储AI生成的推荐理由
 }
 
+const FEEDBACK_NOTIFY_KEY = "feedback_notified_v1";
+
 const WEIGHT_CONFIG: Record<WetPreference, { wg: number; rr: number }> = {
   very: { wg: 0.8, rr: 0.2 },
   normal: { wg: 0.6, rr: 0.4 },
@@ -42,6 +44,65 @@ function generateReason(tire: TireWithScore, wetPref: WetPreference): string {
   if (rrLow) return "滚阻表现优秀，骑行更省力，湿地性能在合理水平";
   return "综合性能均衡，湿地与效率表现稳定，适合日常通勤骑行";
 }
+
+const buildFeedbackMessage = (payload: {
+  helpfulness: string;
+  q1_importance: WetPreference;
+  q2_width_pref: WidthPreference;
+  top1: string | null;
+  top2: string | null;
+  top3: string | null;
+  source: string;
+}) => {
+  const helpfulnessLabel =
+    payload.helpfulness === "helpful"
+      ? "有帮助"
+      : payload.helpfulness === "ok"
+      ? "一般"
+      : "没帮助";
+
+  return [
+    "新反馈",
+    `反馈：${helpfulnessLabel}`,
+    `Q1 湿地偏好：${payload.q1_importance}`,
+    `Q2 胎宽偏好：${payload.q2_width_pref}`,
+    payload.top1 ? `Top1：${payload.top1}` : null,
+    payload.top2 ? `Top2：${payload.top2}` : null,
+    payload.top3 ? `Top3：${payload.top3}` : null,
+    `来源：${payload.source}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+};
+
+const notifyFeedbackOnce = async (payload: {
+  helpfulness: string;
+  q1_importance: WetPreference;
+  q2_width_pref: WidthPreference;
+  top1: string | null;
+  top2: string | null;
+  top3: string | null;
+}) => {
+  if (typeof window === "undefined") return;
+  if (window.localStorage.getItem(FEEDBACK_NOTIFY_KEY)) return;
+
+  const message = buildFeedbackMessage({
+    ...payload,
+    source: window.location.href,
+  });
+
+  const response = await fetch("/api/notify-feedback", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: message }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Notify failed: ${response.status}`);
+  }
+
+  window.localStorage.setItem(FEEDBACK_NOTIFY_KEY, "1");
+};
 
 export default function Index() {
   const BUILD_TAG = "2025-02-15-1";
@@ -236,6 +297,12 @@ export default function Index() {
       const { error } = await supabase.from("feedback").insert(feedbackData);
       
       if (error) throw error;
+
+      try {
+        await notifyFeedbackOnce(feedbackData);
+      } catch (notifyError) {
+        console.error("Error sending Feishu notification:", notifyError);
+      }
       
       toast({
         description: "感谢反馈",
